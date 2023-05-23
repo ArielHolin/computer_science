@@ -1,0 +1,11 @@
+sudo modprobe brd rd_nr=1 max_part=1 rd_size=24000
+sudo mkfs.ext2 -b 1024 /dev/ram0
+sudo mkdir /mnt/ram0
+sudo mount /dev/ram0 /mnt/ram0 -o sync
+cd /mnt/ram0
+sudo touch /mnt/ram0/a.txt
+sudo chmod 777 /mnt/ram0/a.txt
+sudo echo "Hello world" > /mnt/ram0/a.txt
+
+sudo umount /mnt/ram0
+sudo rmmod brd

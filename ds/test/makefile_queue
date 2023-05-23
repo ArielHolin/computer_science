@@ -1,0 +1,21 @@
+CC=gcc
+OBJ=queue_test.o queue.o slist.o
+DEPS=../include/queue.h ../include/slist.h
+CFLAGS=-ansi -pedantic -errors -Wall -Wextra -g -I ../include/
+
+queue: $(OBJ)
+	$(CC) -o $@ $(OBJ)
+
+slist.o: ../src/slist.c ../include/slist.h
+	$(CC) $(CFLAGS) -c $^
+
+queue.o: ../src/queue.c $(DEPS)
+	$(CC) $(CFLAGS) -c $^
+
+queue_test.o: queue_test.c $(DEPS)
+	$(CC) $(CFLAGS) -c $^
+
+.PHONY: clean
+clean:
+	rm queue $(OBJ)
+
